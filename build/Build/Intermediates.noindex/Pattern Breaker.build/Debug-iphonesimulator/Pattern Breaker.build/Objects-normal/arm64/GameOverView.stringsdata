@@ -1,0 +1,80 @@
+{
+  "source": "/Users/PrinceTyga/Documents/development/for_human_review_apps/Pattern Breaker/Pattern Breaker/GameOverView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "GAME OVER",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 19
+        }
+      },
+      {
+        "comment": "",
+        "key": "BEST STREAK: %lld",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 61
+        }
+      },
+      {
+        "comment": "",
+        "key": "NEW HIGH SCORE!",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 68
+        }
+      },
+      {
+        "comment": "",
+        "key": "LEVEL",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 30
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 33
+        }
+      },
+      {
+        "comment": "",
+        "key": "SCORE",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 44
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 47
+        }
+      },
+      {
+        "comment": "",
+        "key": "PLAY AGAIN",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 81
+        }
+      },
+      {
+        "comment": "",
+        "key": "MAIN MENU",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 95
+        }
+      }
+    ]
+  },
+  "version": 1
+}

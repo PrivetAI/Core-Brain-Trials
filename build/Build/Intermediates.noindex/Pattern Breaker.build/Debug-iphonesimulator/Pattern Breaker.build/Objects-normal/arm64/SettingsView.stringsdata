@@ -1,0 +1,184 @@
+{
+  "source": "/Users/PrinceTyga/Documents/development/for_human_review_apps/Pattern Breaker/Pattern Breaker/SettingsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "SETTINGS",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 16
+        }
+      },
+      {
+        "comment": "",
+        "key": "PREMIUM PACK",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 38
+        }
+      },
+      {
+        "comment": "",
+        "key": "UNLOCKED",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 43
+        }
+      },
+      {
+        "comment": "",
+        "key": "2 bonus color themes + stats export",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 47
+        }
+      },
+      {
+        "comment": "",
+        "key": "UNLOCK - $2.99",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 57
+        }
+      },
+      {
+        "comment": "",
+        "key": "Restore Purchase",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 71
+        }
+      },
+      {
+        "comment": "",
+        "key": "COLOR THEME",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 83
+        }
+      },
+      {
+        "comment": "",
+        "key": "PREMIUM",
+        "location": {
+          "startingColumn": 54,
+          "startingLine": 111
+        }
+      },
+      {
+        "comment": "",
+        "key": "Export Stats",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 135
+        }
+      },
+      {
+        "comment": "",
+        "key": ">",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 139
+        }
+      },
+      {
+        "comment": "",
+        "key": "STATS",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 152
+        }
+      },
+      {
+        "comment": "",
+        "key": "RESET ALL DATA",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 170
+        }
+      },
+      {
+        "comment": "",
+        "key": "Privacy Policy",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 182
+        }
+      },
+      {
+        "comment": "",
+        "key": ">",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 186
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pattern Breaker v2.0",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 196
+        }
+      },
+      {
+        "comment": "",
+        "key": "X",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 215
+        }
+      },
+      {
+        "comment": "",
+        "key": "Reset All Data",
+        "location": {
+          "startingColumn": 29,
+          "startingLine": 232
+        }
+      },
+      {
+        "comment": "",
+        "key": "This will delete all scores, achievements, and progress.",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 233
+        }
+      },
+      {
+        "comment": "",
+        "key": "Reset",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 234
+        }
+      },
+      {
+        "comment": "",
+        "key": "Stats Export",
+        "location": {
+          "startingColumn": 29,
+          "startingLine": 242
+        }
+      },
+      {
+        "comment": "",
+        "key": "Best Score: %lld\nBest Level: %lld\nGames: %lld\nStreak: %lld\nCorrect: %lld",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 243
+        }
+      },
+      {
+        "comment": "",
+        "key": "OK",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 244
+        }
+      }
+    ]
+  },
+  "version": 1
+}
