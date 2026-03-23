@@ -5,7 +5,6 @@ struct SettingsView: View {
     @ObservedObject var themeManager: ThemeManager
     @State private var showWebView = false
     @State private var showResetAlert = false
-    @State private var showExportAlert = false
     
     var body: some View {
         ZStack {
@@ -31,65 +30,6 @@ struct SettingsView: View {
                 
                 ScrollView {
                     VStack(spacing: 16) {
-                        // Theme Selection
-                        GlowCard(glowColor: BrandColors.purple) {
-                            VStack(spacing: 12) {
-                                Text("COLOR THEME")
-                                    .font(.system(size: 14, weight: .bold, design: .monospaced))
-                                    .foregroundColor(BrandColors.purple)
-                                
-                                ForEach(AppTheme.allCases, id: \.rawValue) { theme in
-                                    let isSelected = themeManager.currentTheme == theme
-                                    
-                                    Button(action: {
-                                        themeManager.setTheme(theme)
-                                    }) {
-                                        HStack {
-                                            Circle()
-                                                .fill(theme.accent)
-                                                .frame(width: 20, height: 20)
-                                            Circle()
-                                                .fill(theme.secondary)
-                                                .frame(width: 20, height: 20)
-                                            
-                                            Text(theme.rawValue.uppercased())
-                                                .font(.system(size: 13, weight: .bold, design: .monospaced))
-                                                .foregroundColor(BrandColors.textWhite)
-                                            
-                                            Spacer()
-                                            
-                                            if isSelected {
-                                                Circle()
-                                                    .fill(BrandColors.neonGreen)
-                                                    .frame(width: 10, height: 10)
-                                            }
-                                        }
-                                        .padding(.vertical, 6)
-                                    }
-                                }
-                            }
-                            .padding(20)
-                        }
-                        
-                        // Stats Export
-                        GlowCard(glowColor: BrandColors.neonGreen) {
-                            Button(action: {
-                                showExportAlert = true
-                            }) {
-                                HStack {
-                                    Text("Export Stats")
-                                        .font(.system(size: 13, weight: .bold, design: .monospaced))
-                                        .foregroundColor(BrandColors.neonGreen)
-                                    Spacer()
-                                    Text(">")
-                                        .font(.system(size: 13, design: .monospaced))
-                                        .foregroundColor(BrandColors.textWhite.opacity(0.4))
-                                }
-                                .padding(.horizontal, 20)
-                                .padding(.vertical, 14)
-                            }
-                        }
-                        
                         // Stats
                         GlowCard(glowColor: BrandColors.neonGreen) {
                             VStack(spacing: 8) {
@@ -179,13 +119,6 @@ struct SettingsView: View {
                     scoreStore.resetAll()
                 },
                 secondaryButton: .cancel()
-            )
-        }
-        .alert(isPresented: $showExportAlert) {
-            Alert(
-                title: Text("Stats Export"),
-                message: Text("Best Score: \(scoreStore.bestScore)\nBest Level: \(scoreStore.highestLevel)\nGames: \(scoreStore.totalGames)\nStreak: \(scoreStore.bestPerfectStreak)\nCorrect: \(scoreStore.totalCorrect)"),
-                dismissButton: .default(Text("OK"))
             )
         }
     }
