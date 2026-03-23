@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct BreakerLoadingScreen: View {
+struct TrialsLoadingScreen: View {
     @State private var pulse = false
     @State private var codeText = "0x00FF"
     
@@ -37,7 +37,7 @@ struct BreakerLoadingScreen: View {
                     }
                 }
                 
-                Text("PATTERN BREAKER")
+                Text("CORE: BRAIN TRIALS")
                     .font(.system(size: 18, weight: .bold, design: .monospaced))
                     .foregroundColor(BrandColors.neonGreen)
                     .shadow(color: BrandColors.neonGreen.opacity(0.5), radius: 6)

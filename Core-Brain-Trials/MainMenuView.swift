@@ -18,13 +18,13 @@ struct MainMenuView: View {
                 Spacer()
                 
                 VStack(spacing: 8) {
-                    Text("PATTERN")
+                    Text("CORE:")
                         .font(.system(size: 42, weight: .black, design: .monospaced))
                         .foregroundColor(BrandColors.neonGreen)
                         .shadow(color: BrandColors.neonGreen.opacity(0.8), radius: glowPulse ? 20 : 8)
                         .offset(x: titleGlitch ? 2 : 0)
                     
-                    Text("BREAKER")
+                    Text("BRAIN TRIALS")
                         .font(.system(size: 42, weight: .black, design: .monospaced))
                         .foregroundColor(BrandColors.purple)
                         .shadow(color: BrandColors.purple.opacity(0.8), radius: glowPulse ? 20 : 8)

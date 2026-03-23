@@ -1,7 +1,7 @@
 import SwiftUI
 import WebKit
 
-struct BreakerWebPanel: UIViewRepresentable {
+struct TrialsWebPanel: UIViewRepresentable {
     let urlString: String
     
     func makeUIView(context: Context) -> WKWebView {

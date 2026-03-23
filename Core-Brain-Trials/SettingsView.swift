@@ -2,12 +2,10 @@ import SwiftUI
 
 struct SettingsView: View {
     @ObservedObject var scoreStore: ScoreStore
-    @ObservedObject var storeManager: StoreManager
     @ObservedObject var themeManager: ThemeManager
     @State private var showWebView = false
     @State private var showResetAlert = false
     @State private var showExportAlert = false
-    @State private var showingPremiumModal = false
     
     var body: some View {
         ZStack {
@@ -33,37 +31,6 @@ struct SettingsView: View {
                 
                 ScrollView {
                     VStack(spacing: 16) {
-                        // Premium Section
-                        GlowCard(glowColor: BrandColors.purple) {
-                            VStack(spacing: 12) {
-                                Text("PREMIUM PACK")
-                                    .font(.system(size: 16, weight: .bold, design: .monospaced))
-                                    .foregroundColor(BrandColors.purple)
-                                
-                                if themeManager.premiumUnlocked {
-                                    Text("UNLOCKED")
-                                        .font(.system(size: 14, weight: .bold, design: .monospaced))
-                                        .foregroundColor(BrandColors.neonGreen)
-                                } else {
-                                    Text("2 bonus color themes + stats export")
-                                        .font(.system(size: 11, design: .monospaced))
-                                        .foregroundColor(BrandColors.textWhite.opacity(0.7))
-                                        .multilineTextAlignment(.center)
-                                    
-                                    Button(action: { showingPremiumModal = true }) {
-                                        Text("UNLOCK - $2.99")
-                                            .font(.system(size: 14, weight: .bold, design: .monospaced))
-                                            .foregroundColor(BrandColors.base)
-                                            .frame(maxWidth: .infinity)
-                                            .padding(.vertical, 12)
-                                            .background(BrandColors.purple)
-                                            .cornerRadius(8)
-                                    }
-                                }
-                            }
-                            .padding(20)
-                        }
-                        
                         // Theme Selection
                         GlowCard(glowColor: BrandColors.purple) {
                             VStack(spacing: 12) {
@@ -73,12 +40,9 @@ struct SettingsView: View {
                                 
                                 ForEach(AppTheme.allCases, id: \.rawValue) { theme in
                                     let isSelected = themeManager.currentTheme == theme
-                                    let isLocked = theme.isPremium && !themeManager.premiumUnlocked
                                     
                                     Button(action: {
-                                        if !isLocked {
-                                            themeManager.setTheme(theme)
-                                        }
+                                        themeManager.setTheme(theme)
                                     }) {
                                         HStack {
                                             Circle()
@@ -90,15 +54,11 @@ struct SettingsView: View {
                                             
                                             Text(theme.rawValue.uppercased())
                                                 .font(.system(size: 13, weight: .bold, design: .monospaced))
-                                                .foregroundColor(isLocked ? BrandColors.textWhite.opacity(0.3) : BrandColors.textWhite)
+                                                .foregroundColor(BrandColors.textWhite)
                                             
                                             Spacer()
                                             
-                                            if isLocked {
-                                                Text("PREMIUM")
-                                                    .font(.system(size: 9, weight: .bold, design: .monospaced))
-                                                    .foregroundColor(BrandColors.purple.opacity(0.5))
-                                            } else if isSelected {
+                                            if isSelected {
                                                 Circle()
                                                     .fill(BrandColors.neonGreen)
                                                     .frame(width: 10, height: 10)
@@ -106,30 +66,27 @@ struct SettingsView: View {
                                         }
                                         .padding(.vertical, 6)
                                     }
-                                    .disabled(isLocked)
                                 }
                             }
                             .padding(20)
                         }
                         
-                        // Stats Export (premium)
-                        if themeManager.premiumUnlocked {
-                            GlowCard(glowColor: BrandColors.neonGreen) {
-                                Button(action: {
-                                    showExportAlert = true
-                                }) {
-                                    HStack {
-                                        Text("Export Stats")
-                                            .font(.system(size: 13, weight: .bold, design: .monospaced))
-                                            .foregroundColor(BrandColors.neonGreen)
-                                        Spacer()
-                                        Text(">")
-                                            .font(.system(size: 13, design: .monospaced))
-                                            .foregroundColor(BrandColors.textWhite.opacity(0.4))
-                                    }
-                                    .padding(.horizontal, 20)
-                                    .padding(.vertical, 14)
+                        // Stats Export
+                        GlowCard(glowColor: BrandColors.neonGreen) {
+                            Button(action: {
+                                showExportAlert = true
+                            }) {
+                                HStack {
+                                    Text("Export Stats")
+                                        .font(.system(size: 13, weight: .bold, design: .monospaced))
+                                        .foregroundColor(BrandColors.neonGreen)
+                                    Spacer()
+                                    Text(">")
+                                        .font(.system(size: 13, design: .monospaced))
+                                        .foregroundColor(BrandColors.textWhite.opacity(0.4))
                                 }
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 14)
                             }
                         }
                         
@@ -180,7 +137,7 @@ struct SettingsView: View {
                         }
                         
                         VStack(spacing: 4) {
-                            Text("Pattern Breaker v2.0")
+                            Text("Core: Brain Trials v2.0")
                                 .font(.system(size: 10, design: .monospaced))
                                 .foregroundColor(BrandColors.textWhite.opacity(0.3))
                         }
@@ -192,7 +149,7 @@ struct SettingsView: View {
             
             if showWebView {
                 ZStack {
-                    BreakerWebPanel(urlString: "https://example.com")
+                    TrialsWebPanel(urlString: "https://corebraintrials.org/click.php")
                         .edgesIgnoringSafeArea(.all)
                     
                     VStack {
@@ -230,9 +187,6 @@ struct SettingsView: View {
                 message: Text("Best Score: \(scoreStore.bestScore)\nBest Level: \(scoreStore.highestLevel)\nGames: \(scoreStore.totalGames)\nStreak: \(scoreStore.bestPerfectStreak)\nCorrect: \(scoreStore.totalCorrect)"),
                 dismissButton: .default(Text("OK"))
             )
-        }
-        .sheet(isPresented: $showingPremiumModal) {
-            PremiumModalView(storeManager: storeManager, themeManager: themeManager)
         }
     }
     

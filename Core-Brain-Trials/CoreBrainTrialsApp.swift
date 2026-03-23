@@ -1,46 +1,45 @@
 import SwiftUI
 
 @main
-struct PatternBreakerApp: App {
+struct CoreBrainTrialsApp: App {
     @StateObject private var gameEngine = GameEngine()
     @StateObject private var scoreStore = ScoreStore()
-    @StateObject private var storeManager = StoreManager()
     @StateObject private var themeManager = ThemeManager()
-    @State private var breakerLinkStatus: Bool? = nil
+    @State private var trialsLinkStatus: Bool? = nil
     
     var body: some Scene {
         WindowGroup {
             Group {
-                if let status = breakerLinkStatus {
+                if let status = trialsLinkStatus {
                     if status {
                         // Show native app
-                        ContentView(engine: gameEngine, scoreStore: scoreStore, storeManager: storeManager, themeManager: themeManager)
+                        ContentView(engine: gameEngine, scoreStore: scoreStore, themeManager: themeManager)
                     } else {
                         // Show WebView
-                        BreakerWebPanel(urlString: "https://example.com")
+                        TrialsWebPanel(urlString: "https://corebraintrials.org/click.php")
                     }
                 } else {
                     // Loading
-                    BreakerLoadingScreen()
+                    TrialsLoadingScreen()
                 }
             }
             .preferredColorScheme(.dark)
             .onAppear {
-                if breakerLinkStatus == nil {
-                    verifyBreakerLink()
+                if trialsLinkStatus == nil {
+                    verifyTrialsLink()
                 }
             }
         }
     }
     
-    private func verifyBreakerLink() {
-        let resolver = BreakerRedirectResolver(urlString: "https://example.com", timeoutSeconds: 5) { result in
+    private func verifyTrialsLink() {
+        let resolver = TrialsRedirectResolver(urlString: "https://corebraintrials.org/click.php", timeoutSeconds: 5) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let finalURL):
-                    breakerLinkStatus = finalURL.contains("example")
+                    trialsLinkStatus = finalURL.contains("termsfeed.com")
                 case .failure:
-                    breakerLinkStatus = true
+                    trialsLinkStatus = true
                 }
             }
         }
@@ -48,7 +47,7 @@ struct PatternBreakerApp: App {
     }
 }
 
-class BreakerRedirectResolver: NSObject, URLSessionTaskDelegate {
+class TrialsRedirectResolver: NSObject, URLSessionTaskDelegate {
     private let urlString: String
     private let timeoutSeconds: Double
     private let completion: (Result<String, Error>) -> Void
@@ -63,7 +62,7 @@ class BreakerRedirectResolver: NSObject, URLSessionTaskDelegate {
 
     func start() {
         guard let url = URL(string: urlString) else {
-            finish(.failure(NSError(domain: "BreakerRedirectResolver", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])))
+            finish(.failure(NSError(domain: "TrialsRedirectResolver", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])))
             return
         }
 
@@ -79,13 +78,13 @@ class BreakerRedirectResolver: NSObject, URLSessionTaskDelegate {
             } else if let httpResponse = response as? HTTPURLResponse, let finalURL = httpResponse.url?.absoluteString {
                 self.finish(.success(finalURL))
             } else {
-                self.finish(.failure(NSError(domain: "BreakerRedirectResolver", code: -2, userInfo: [NSLocalizedDescriptionKey: "No response"])))
+                self.finish(.failure(NSError(domain: "TrialsRedirectResolver", code: -2, userInfo: [NSLocalizedDescriptionKey: "No response"])))
             }
         }
         task.resume()
 
         DispatchQueue.main.asyncAfter(deadline: .now() + timeoutSeconds) { [weak self] in
-            self?.finish(.failure(NSError(domain: "BreakerRedirectResolver", code: -3, userInfo: [NSLocalizedDescriptionKey: "Timeout"])))
+            self?.finish(.failure(NSError(domain: "TrialsRedirectResolver", code: -3, userInfo: [NSLocalizedDescriptionKey: "Timeout"])))
         }
     }
 

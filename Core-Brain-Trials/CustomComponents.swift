@@ -7,13 +7,6 @@ enum AppTheme: String, CaseIterable, Codable {
     case cyberBlue = "Cyber"
     case infraRed = "Infra"
     
-    var isPremium: Bool {
-        switch self {
-        case .defaultGreen: return false
-        case .cyberBlue, .infraRed: return true
-        }
-    }
-    
     var accent: Color {
         switch self {
         case .defaultGreen: return Color(red: 0, green: 230.0/255, blue: 118.0/255)
@@ -33,32 +26,19 @@ enum AppTheme: String, CaseIterable, Codable {
 
 class ThemeManager: ObservableObject {
     @Published var currentTheme: AppTheme = .defaultGreen
-    @Published var premiumUnlocked: Bool = false
     
     private let themeKey = "pb_theme"
-    private let premiumKey = "pb_premium_unlocked"
     
     init() {
-        premiumUnlocked = UserDefaults.standard.bool(forKey: premiumKey)
         if let raw = UserDefaults.standard.string(forKey: themeKey),
            let theme = AppTheme(rawValue: raw) {
-            if theme.isPremium && !premiumUnlocked {
-                currentTheme = .defaultGreen
-            } else {
-                currentTheme = theme
-            }
+            currentTheme = theme
         }
     }
     
     func setTheme(_ theme: AppTheme) {
-        guard !theme.isPremium || premiumUnlocked else { return }
         currentTheme = theme
         UserDefaults.standard.set(theme.rawValue, forKey: themeKey)
-    }
-    
-    func unlockPremium() {
-        premiumUnlocked = true
-        UserDefaults.standard.set(true, forKey: premiumKey)
     }
 }
 

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA000001 /* PatternBreakerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000001; };
+		AA000001 /* CoreBrainTrialsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000001; };
 		AA000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000002; };
 		AA000003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB000003; };
 		AA000004 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000004; };
@@ -17,18 +17,16 @@
 		AA000008 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000008; };
 		AA000009 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000009; };
 		AA000010 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000010; };
-		AA000011 /* BreakerWebPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000011; };
-		AA000012 /* BreakerLoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000012; };
-		AA000013 /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000013; };
+		AA000011 /* TrialsWebPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000011; };
+		AA000012 /* TrialsLoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000012; };
 		AA000014 /* CustomComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000014; };
 		AA000015 /* ScoreStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000015; };
 		AA000016 /* AchievementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000017; };
-		AA000017 /* PremiumModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB000018; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AB000000 /* Pattern Breaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pattern Breaker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB000001 /* PatternBreakerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternBreakerApp.swift; sourceTree = "<group>"; };
+		AB000000 /* Core-Brain-Trials.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Core-Brain-Trials.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB000001 /* CoreBrainTrialsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreBrainTrialsApp.swift; sourceTree = "<group>"; };
 		AB000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AB000003 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB000004 /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
@@ -38,14 +36,12 @@
 		AB000008 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		AB000009 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 		AB000010 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		AB000011 /* BreakerWebPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakerWebPanel.swift; sourceTree = "<group>"; };
-		AB000012 /* BreakerLoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakerLoadingScreen.swift; sourceTree = "<group>"; };
-		AB000013 /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
+		AB000011 /* TrialsWebPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrialsWebPanel.swift; sourceTree = "<group>"; };
+		AB000012 /* TrialsLoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrialsLoadingScreen.swift; sourceTree = "<group>"; };
 		AB000014 /* CustomComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomComponents.swift; sourceTree = "<group>"; };
 		AB000015 /* ScoreStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreStore.swift; sourceTree = "<group>"; };
 		AB000016 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB000017 /* AchievementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsView.swift; sourceTree = "<group>"; };
-		AB000018 /* PremiumModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumModalView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,15 +58,15 @@
 		AD000001 = {
 			isa = PBXGroup;
 			children = (
-				AD000002 /* Pattern Breaker */,
+				AD000002 /* Core-Brain-Trials */,
 				AD000003 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		AD000002 /* Pattern Breaker */ = {
+		AD000002 /* Core-Brain-Trials */ = {
 			isa = PBXGroup;
 			children = (
-				AB000001 /* PatternBreakerApp.swift */,
+				AB000001 /* CoreBrainTrialsApp.swift */,
 				AB000002 /* ContentView.swift */,
 				AB000004 /* GameEngine.swift */,
 				AB000005 /* PuzzleGenerators.swift */,
@@ -79,23 +75,21 @@
 				AB000008 /* GameOverView.swift */,
 				AB000009 /* LeaderboardView.swift */,
 				AB000010 /* SettingsView.swift */,
-				AB000011 /* BreakerWebPanel.swift */,
-				AB000012 /* BreakerLoadingScreen.swift */,
-				AB000013 /* StoreManager.swift */,
+				AB000011 /* TrialsWebPanel.swift */,
+				AB000012 /* TrialsLoadingScreen.swift */,
 				AB000014 /* CustomComponents.swift */,
 				AB000015 /* ScoreStore.swift */,
 				AB000017 /* AchievementsView.swift */,
-				AB000018 /* PremiumModalView.swift */,
 				AB000003 /* Assets.xcassets */,
 				AB000016 /* Info.plist */,
 			);
-			path = "Pattern Breaker";
+			path = "Core-Brain-Trials";
 			sourceTree = "<group>";
 		};
 		AD000003 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AB000000 /* Pattern Breaker.app */,
+				AB000000 /* Core-Brain-Trials.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,9 +97,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AE000001 /* Pattern Breaker */ = {
+		AE000001 /* Core-Brain-Trials */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AF000003 /* Build configuration list for PBXNativeTarget "Pattern Breaker" */;
+			buildConfigurationList = AF000003 /* Build configuration list for PBXNativeTarget "Core-Brain-Trials" */;
 			buildPhases = (
 				AE000002 /* Sources */,
 				AC000001 /* Frameworks */,
@@ -115,9 +109,9 @@
 			);
 			dependencies = (
 			);
-			name = "Pattern Breaker";
-			productName = "Pattern Breaker";
-			productReference = AB000000 /* Pattern Breaker.app */;
+			name = "Core-Brain-Trials";
+			productName = "Core-Brain-Trials";
+			productReference = AB000000 /* Core-Brain-Trials.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -135,7 +129,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AF000001 /* Build configuration list for PBXProject "Pattern Breaker" */;
+			buildConfigurationList = AF000001 /* Build configuration list for PBXProject "Core-Brain-Trials" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -148,7 +142,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AE000001 /* Pattern Breaker */,
+				AE000001 /* Core-Brain-Trials */,
 			);
 		};
 /* End PBXProject section */
@@ -169,7 +163,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA000001 /* PatternBreakerApp.swift in Sources */,
+				AA000001 /* CoreBrainTrialsApp.swift in Sources */,
 				AA000002 /* ContentView.swift in Sources */,
 				AA000004 /* GameEngine.swift in Sources */,
 				AA000005 /* PuzzleGenerators.swift in Sources */,
@@ -178,13 +172,11 @@
 				AA000008 /* GameOverView.swift in Sources */,
 				AA000009 /* LeaderboardView.swift in Sources */,
 				AA000010 /* SettingsView.swift in Sources */,
-				AA000011 /* BreakerWebPanel.swift in Sources */,
-				AA000012 /* BreakerLoadingScreen.swift in Sources */,
-				AA000013 /* StoreManager.swift in Sources */,
+				AA000011 /* TrialsWebPanel.swift in Sources */,
+				AA000012 /* TrialsLoadingScreen.swift in Sources */,
 				AA000014 /* CustomComponents.swift in Sources */,
 				AA000015 /* ScoreStore.swift in Sources */,
 				AA000016 /* AchievementsView.swift in Sources */,
-				AA000017 /* PremiumModalView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,12 +302,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "Pattern Breaker/Info.plist";
+				INFOPLIST_FILE = "Core-Brain-Trials/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -325,9 +315,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.patternbreaker.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.corebraintrials.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -341,12 +330,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "Pattern Breaker/Info.plist";
+				INFOPLIST_FILE = "Core-Brain-Trials/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -356,9 +343,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.patternbreaker.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.corebraintrials.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -370,7 +356,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AF000001 /* Build configuration list for PBXProject "Pattern Breaker" */ = {
+		AF000001 /* Build configuration list for PBXProject "Core-Brain-Trials" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AF000011 /* Debug */,
@@ -379,7 +365,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AF000003 /* Build configuration list for PBXNativeTarget "Pattern Breaker" */ = {
+		AF000003 /* Build configuration list for PBXNativeTarget "Core-Brain-Trials" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AF000021 /* Debug */,

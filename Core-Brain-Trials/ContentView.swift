@@ -3,7 +3,6 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var engine: GameEngine
     @ObservedObject var scoreStore: ScoreStore
-    @ObservedObject var storeManager: StoreManager
     @ObservedObject var themeManager: ThemeManager
     @State private var selectedTab: Int = 0
     
@@ -21,7 +20,7 @@ struct ContentView: View {
                     case 2:
                         AchievementsView(scoreStore: scoreStore)
                     case 3:
-                        SettingsView(scoreStore: scoreStore, storeManager: storeManager, themeManager: themeManager)
+                        SettingsView(scoreStore: scoreStore, themeManager: themeManager)
                     default:
                         gameTab
                     }
@@ -55,26 +54,34 @@ struct ContentView: View {
             Button(action: { selectedTab = 0 }) {
                 TabIcon(type: "play", isSelected: selectedTab == 0)
             }
+            .buttonStyle(.plain)
             .frame(width: 80, height: 50)
             .contentShape(Rectangle())
+            .accessibilityLabel("Game")
             Spacer()
             Button(action: { selectedTab = 1 }) {
                 TabIcon(type: "trophy", isSelected: selectedTab == 1)
             }
+            .buttonStyle(.plain)
             .frame(width: 80, height: 50)
             .contentShape(Rectangle())
+            .accessibilityLabel("Scores")
             Spacer()
             Button(action: { selectedTab = 2 }) {
                 TabIcon(type: "star", isSelected: selectedTab == 2)
             }
+            .buttonStyle(.plain)
             .frame(width: 80, height: 50)
             .contentShape(Rectangle())
+            .accessibilityLabel("Feats")
             Spacer()
             Button(action: { selectedTab = 3 }) {
                 TabIcon(type: "gear", isSelected: selectedTab == 3)
             }
+            .buttonStyle(.plain)
             .frame(width: 80, height: 50)
             .contentShape(Rectangle())
+            .accessibilityLabel("Settings")
             Spacer()
         }
         .padding(.vertical, 10)
